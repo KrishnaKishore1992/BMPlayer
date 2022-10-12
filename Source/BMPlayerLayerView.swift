@@ -100,7 +100,7 @@ open class BMPlayerLayerView: UIView {
     
     fileprivate var lastPlayerItem: AVPlayerItem?
     /// playerLayer
-    fileprivate var playerLayer: AVPlayerLayer?
+    open var playerLayer: AVPlayerLayer?
     /// 音量滑杆
     fileprivate var volumeViewSlider: UISlider!
     /// 播放器的几种状态
@@ -275,8 +275,8 @@ open class BMPlayerLayerView: UIView {
         setNeedsLayout()
         layoutIfNeeded()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.connectPlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.disconnectPlayerLayer), name: UIApplication.didEnterBackgroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.connectPlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.disconnectPlayerLayer), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func setupTimer() {
@@ -449,7 +449,6 @@ open class BMPlayerLayerView: UIView {
         playerLayer?.removeFromSuperlayer()
         playerLayer = AVPlayerLayer(player: player)
         playerLayer!.videoGravity = videoGravity
-        
         layer.addSublayer(playerLayer!)
     }
     
@@ -458,4 +457,3 @@ open class BMPlayerLayerView: UIView {
         playerLayer = nil
     }
 }
-
